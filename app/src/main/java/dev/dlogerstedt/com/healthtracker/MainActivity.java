@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView timerView;
     long startTime = 0;
+    long currentTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (startStopButton.getText().equals("Stop")) {
+                    currentTime = System.currentTimeMillis() - startTime + currentTime;
                     stopWatchHandler.removeCallbacks(stopWatchRunner);
                     startStopButton.setText("Start");
 
                 } else {
                     startTime = System.currentTimeMillis();
-                    stopWatchHandler.postDelayed(stopWatchRunner, 0);
                     startStopButton.setText("Stop");
+                    stopWatchHandler.postDelayed(stopWatchRunner, 0);
                 }
 
             }
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     Runnable stopWatchRunner = new Runnable() {
         @Override
         public void run() {
-            long millis = (System.currentTimeMillis() - startTime);
+            long millis = (System.currentTimeMillis() - startTime + currentTime);
             int seconds = (int)(millis/1000);
             int minutes = seconds/60;
             int hours = minutes/60;
@@ -67,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
             minutes = minutes%60;
             hours = hours%24;
 
-            timerView.setText(String.format("%1d:%2d:%3d", hours, minutes, seconds));
-            stopWatchHandler.postDelayed(this, 500);
+            timerView.setText(String.format("%02d:%02d:%02d:%03d", hours, minutes, seconds, millis));
+            stopWatchHandler.postDelayed(this, 50);
 
         }
     };
@@ -79,5 +81,14 @@ public class MainActivity extends AppCompatActivity {
         stopWatchHandler.removeCallbacks(stopWatchRunner);
         Button startStopButton = findViewById(R.id.timer_start);
         startStopButton.setText("Start");
+    }
+
+    public void onReset (View v) {
+        currentTime = 0;
+        stopWatchHandler.removeCallbacks(stopWatchRunner);
+        TextView time = findViewById(R.id.stop_watch_time);
+        time.setText("00:00:00:000");
+        Button startStop = findViewById(R.id.timer_start);
+        startStop.setText("Start");
     }
 }
