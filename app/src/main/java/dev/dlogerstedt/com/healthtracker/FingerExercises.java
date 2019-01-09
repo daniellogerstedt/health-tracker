@@ -19,7 +19,9 @@ public class FingerExercises extends AppCompatActivity {
         theCount += 1;
         countDisplay.setText(Integer.toString(theCount));
         TextView encourage = findViewById(R.id.encouragement_text);
-        if (theCount%50 == 0) encourage.setText("Nice, you hit another fifty!");
+        if (theCount == 10) encourage.setText("That's ten, keep going.");
+        else if (theCount == 50) encourage.setText("Outstanding! Fifty down.");
+        else if (theCount%50 == 0) encourage.setText("Nice, you hit another fifty!");
         else if (theCount%10 == 0) encourage.setText("Ten more down.");
         else encourage.setText("");
     }
