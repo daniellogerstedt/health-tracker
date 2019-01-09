@@ -26,3 +26,9 @@ This activity has a counter and a button to increment the counter. It literally 
 ## Running the App
 
 Open app with android studio, hit run, do the things.
+
+## Images of the Layouts
+
+<img src="./assets/Home.png" height=500>
+<img src="./assets/Stopwatch.png" height=500>
+<img src="./assets/FingerExercise.png" height=500>
