@@ -6,8 +6,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.sql.Timestamp;
-
 @Entity
 public class Exercise {
     @NonNull
@@ -16,7 +14,7 @@ public class Exercise {
     private String title;
     private int quantity;
     private String description;
-    private Timestamp timestamp;
+    private long timestamp;
 
     public Exercise () {}
 
@@ -24,12 +22,19 @@ public class Exercise {
         this.title = title;
         this.quantity = quantity;
         this.description = description;
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.timestamp = System.currentTimeMillis();
     }
 
+    public long getExerciseId () {return this.exerciseId;}
     public String getTitle () {return this.title;}
     public int getQuantity () {return this.quantity;}
     public String getDescription () {return this.description;}
-    public Timestamp getTimestamp () {return this.timestamp;}
+    public long getTimestamp () {return this.timestamp;}
+
+    public void setExerciseId (long id) {this.exerciseId = id;}
+    public void setTitle (String title) {this.title = title;}
+    public void setQuantity (int quantity) {this.quantity =  quantity;}
+    public void setDescription (String description) {this.description = description;}
+    public void setTimestamp (long timestamp) {this.timestamp = timestamp;}
 
 }
