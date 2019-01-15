@@ -1,12 +1,11 @@
 package dev.dlogerstedt.com.healthtracker;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private static final String CHANNEL_ID = "channelId";
     ArrayList<ImageInfo> images = new ArrayList<>();
     ImageInfo currentImage = new ImageInfo(R.drawable.bitmap, "The Original Bitmap");
 
@@ -74,5 +73,18 @@ public class MainActivity extends AppCompatActivity {
         numberCaption.setText(count);
         contentCaption.setText(currentImage.imageCap);
         image.setImageResource(currentImage.imageRef);
+    }
+
+    public void onNotificationsButton (View v) {
+        System.out.println("Notification Clicked");
+        NotificationCompat.Builder noteBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.negative)
+                .setContentTitle("This is a notification")
+                .setContentText("Here is a notification, with some information")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                    .bigText("Here is a notification, with some information, and some extra information because it can have it."))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, noteBuilder.build());
     }
 }
