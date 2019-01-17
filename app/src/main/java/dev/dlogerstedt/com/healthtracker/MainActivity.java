@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Notification Clicked");
         NotificationCompat.Builder noteBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.negative)
-                .setContentTitle("This is a notification")
-                .setContentText("Here is a notification, with some information")
+                .setContentTitle("Water")
+                .setContentText("Drink Water")
                 .setStyle(new NotificationCompat.BigTextStyle()
-                    .bigText("Here is a notification, with some information, and some extra information because it can have it."))
+                    .bigText("Hydrate Yo Self! Drink Water"))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(noteId, noteBuilder.build());
