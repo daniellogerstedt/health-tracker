@@ -27,13 +27,13 @@
         android:layout_marginBottom="2dp"
         android:onClick="onAddPushUpsClick"
         android:text="Did Pushups"
-        app:layout_constraintBottom_toTopOf="@+id/push_ups_button2"
+        app:layout_constraintBottom_toTopOf="@+id/sit_ups_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercises_list" />
 
     <Button
-        android:id="@+id/push_ups_button2"
+        android:id="@+id/sit_ups_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
