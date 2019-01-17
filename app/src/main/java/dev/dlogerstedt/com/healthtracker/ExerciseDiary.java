@@ -49,22 +49,20 @@ public class ExerciseDiary extends AppCompatActivity {
 
     }
 
-    public void onAddPushUpsClick (View v) {
-        Exercise pushUps = new Exercise("Push-Ups", (int)(Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes");
-        db.daoAccess().insertExercise(pushUps);
-        System.out.println("added to database");
-        for (Exercise exercise : db.daoAccess().fetchExercises()) System.out.println(exercise.getTitle());
-        exerciseStrings.add(pushUps.toString());
+    public void onAddExerciseClick (View v) {
+        TextView titleView = findViewById(R.id.title_input_field);
+        TextView descriptionView = findViewById(R.id.description_input_field);
+        TextView quantityView = findViewById(R.id.quantity_input_field);
+        String title = titleView.getText().toString();
+        String description = descriptionView.getText().toString();
+        int quantity = Integer.parseInt(quantityView.getText().toString());
+        Exercise theExercise = new Exercise(title, quantity, description);
+        db.daoAccess().insertExercise(theExercise);
+        exerciseStrings.add(theExercise.toString());
         exerciseAdapter.notifyItemInserted(exerciseStrings.size() - 1);
-
+        titleView.setText("");
+        descriptionView.setText("");
+        quantityView.setText("");
     }
 
-    public void onAddSitUpsClick (View v) {
-        Exercise sitUps = new Exercise("Sit-Ups", (int)(Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes");
-        db.daoAccess().insertExercise(sitUps);
-        System.out.println("added to database");
-        for (Exercise exercise : db.daoAccess().fetchExercises()) System.out.println(exercise.getTitle());
-        exerciseStrings.add(sitUps.toString());
-        exerciseAdapter.notifyItemInserted(exerciseStrings.size() - 1);
-    }
 }

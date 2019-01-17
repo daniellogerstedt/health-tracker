@@ -26,6 +26,10 @@ This activity has a counter and a button to increment the counter. It literally 
 
 The app will also send regular notifications to remind the user to drink water.
 
+### Exercise Diary
+
+Tracks user input messages in a local database on the device and lists them, allows user to input information for exercises to add.
+
 ## Running the App
 
 Open app with android studio, hit run, do the things.
@@ -38,3 +42,6 @@ Open app with android studio, hit run, do the things.
 
 <img src="./assets/FingerExercise.png" height=500>
 <img src="./assets/Notification.png" height=500>
+
+
+<img src="./assets/ExerciseDiary.png" height=500>
