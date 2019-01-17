@@ -22,6 +22,9 @@ It will reset and stop the stopwatch if it is running when reset is hit.
 
 This activity has a counter and a button to increment the counter. It literally just goes up and up, never down.
 
+### Notifications
+
+The app will also send regular notifications to remind the user to drink water.
 
 ## Running the App
 
