@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void notificationsGo () {
-        System.out.println("Notification Clicked");
         NotificationCompat.Builder noteBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.negative)
                 .setContentTitle("Water")
