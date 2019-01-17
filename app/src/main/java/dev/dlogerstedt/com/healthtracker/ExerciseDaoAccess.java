@@ -8,6 +8,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -21,6 +22,9 @@ public interface ExerciseDaoAccess {
 
     @Query("SELECT * FROM Exercise WHERE exerciseId = :exerciseId")
     Exercise fetchOneExerciseById (long exerciseId);
+
+    @Query("SELECT * FROM Exercise")
+    List<Exercise> fetchExercises ();
 
     @Update
     void updateExercise (Exercise exercise);

@@ -35,32 +35,35 @@
     <Button
         android:id="@+id/goto_stopwatch"
         android:layout_width="262dp"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
         android:onClick="onStopwatchGo"
         android:text="Stopwatch"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/exercise_diary_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goto_finger_exercise"
         android:layout_width="262dp"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="onFingerExerciseGo"
         android:text="Finger Exercises"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/image_caption_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goto_stopwatch" />
+        app:layout_constraintTop_toBottomOf="@+id/exercise_diary_button" />
 
     <TextView
         android:id="@+id/image_caption_number"
@@ -101,6 +104,22 @@
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_caption_number"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.050000012" />
+
+    <Button
+        android:id="@+id/exercise_diary_button"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="onExerciseDiaryGo"
+        android:text="Exercise Diary"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/goto_finger_exercise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goto_stopwatch" />
 
 </android.support.constraint.ConstraintLayout>

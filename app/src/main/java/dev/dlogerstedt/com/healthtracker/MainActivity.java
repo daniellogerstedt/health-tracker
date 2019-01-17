@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(stopwatchIntent);
     }
 
+    public void onExerciseDiaryGo (View v) {
+        System.out.println("Exercise Diary Go!");
+        Intent exerciseDiaryIntent = new Intent(this, ExerciseDiary.class);
+        startActivity(exerciseDiaryIntent);
+    }
+
     public void onFingerExerciseGo (View v) {
         System.out.println("Finger Exercise Go!");
         Intent fingerExerciseIntent = new Intent(this, FingerExercises.class);

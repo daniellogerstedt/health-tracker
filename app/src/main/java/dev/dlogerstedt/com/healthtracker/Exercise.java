@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 @Entity
 public class Exercise {
     @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long exerciseId;
     private String title;
     private int quantity;
