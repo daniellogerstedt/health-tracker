@@ -31,4 +31,7 @@ Open app with android studio, hit run, do the things.
 
 <img src="./assets/Home.png" height=500>
 <img src="./assets/Stopwatch.png" height=500>
+
+
 <img src="./assets/FingerExercise.png" height=500>
+<img src="./assets/Notification.png" height=500>
