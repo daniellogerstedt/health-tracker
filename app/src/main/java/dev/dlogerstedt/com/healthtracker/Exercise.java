@@ -37,4 +37,8 @@ public class Exercise {
     public void setDescription (String description) {this.description = description;}
     public void setTimestamp (long timestamp) {this.timestamp = timestamp;}
 
+    public String toString() {
+        return "Exercise Name: " + this.title + "\nExercise Description " + this.description + "\nNumber Completed: " + this.quantity;
+    }
+
 }

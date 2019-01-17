@@ -18,6 +18,7 @@ public class ExerciseDiary extends AppCompatActivity {
     private RecyclerView exerciseList;
     private RecyclerView.Adapter exerciseAdapter;
     private RecyclerView.LayoutManager exerciseLayoutManager;
+    private List<String> exerciseStrings;
     ExerciseDatabase db;
 
     @Override
@@ -28,14 +29,10 @@ public class ExerciseDiary extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(), ExerciseDatabase.class, "exercises").allowMainThreadQueries().build();
 
         List<Exercise> exercises = db.daoAccess().fetchExercises();
-        String[] exerciseStrings = new String[exercises.size()];
-        int count = 0;
+        exerciseStrings = new ArrayList<>();
         for (Exercise exercise : exercises) {
-            exerciseStrings[count] = "Exercise Name: " + exercise.getTitle() + "\nExercise Description " + exercise.getDescription() + "\nNumber Completed: " + exercise.getQuantity();
-            count++;
+            exerciseStrings.add(exercise.toString());
         }
-
-        db.daoAccess().insertExercise(new Exercise("Push-Ups", ((int)Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes"));
 
         exerciseList = findViewById(R.id.exercises_list);
 
@@ -53,12 +50,21 @@ public class ExerciseDiary extends AppCompatActivity {
     }
 
     public void onAddPushUpsClick (View v) {
-        db.daoAccess().insertExercise(new Exercise("Push-Ups", ((int)Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes"));
+        Exercise pushUps = new Exercise("Push-Ups", (int)(Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes");
+        db.daoAccess().insertExercise(pushUps);
+        System.out.println("added to database");
+        for (Exercise exercise : db.daoAccess().fetchExercises()) System.out.println(exercise.getTitle());
+        exerciseStrings.add(pushUps.toString());
+        exerciseAdapter.notifyItemInserted(exerciseStrings.size() - 1);
 
     }
 
     public void onAddSitUpsClick (View v) {
-        db.daoAccess().insertExercise(new Exercise("Sit-Ups", ((int)Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes"));
-
+        Exercise sitUps = new Exercise("Sit-Ups", (int)(Math.random() * 30), "Pushing Ones Self Off The Ground While On Hands and Toes");
+        db.daoAccess().insertExercise(sitUps);
+        System.out.println("added to database");
+        for (Exercise exercise : db.daoAccess().fetchExercises()) System.out.println(exercise.getTitle());
+        exerciseStrings.add(sitUps.toString());
+        exerciseAdapter.notifyItemInserted(exerciseStrings.size() - 1);
     }
 }

@@ -1,6 +1,9 @@
 package dev.dlogerstedt.com.healthtracker;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "channelId";
+    private static int noteId;
     ArrayList<ImageInfo> images = new ArrayList<>();
     ImageInfo currentImage = new ImageInfo(R.drawable.bitmap, "The Original Bitmap");
 
@@ -48,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
         TextView num = findViewById(R.id.image_caption_number);
         String count = 1 + " of " + images.size();
         num.setText(count);
+        createNotificationChannel();
+        noteId = 0;
+
+        Timer notificationTimer = new Timer();
+        notificationTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                notificationsGo();
+            }
+        }, 5000, 5000);
 
     }
 
@@ -81,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         image.setImageResource(currentImage.imageRef);
     }
 
-    public void onNotificationsButton (View v) {
+    public void notificationsGo () {
         System.out.println("Notification Clicked");
         NotificationCompat.Builder noteBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.negative)
@@ -91,6 +105,24 @@ public class MainActivity extends AppCompatActivity {
                     .bigText("Here is a notification, with some information, and some extra information because it can have it."))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(1, noteBuilder.build());
+        notificationManager.notify(noteId, noteBuilder.build());
+        noteId++;
+    }
+
+
+    // Solution found at https://developer.android.com/training/notify-user/channels#java
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = (CHANNEL_ID);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

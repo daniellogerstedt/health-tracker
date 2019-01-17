@@ -4,32 +4,34 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Part of solution found at https://developer.android.com/guide/topics/ui/layout/recyclerview
 
 class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> {
-    private String[] exerciseDataset;
+    private List<String> exerciseDataset;
 
     public static class ExerciseViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView exerciseTextView;
-        public ExerciseViewHolder(TextView v) {
+        public LinearLayout exerciseTextView;
+        public ExerciseViewHolder(LinearLayout v) {
             super(v);
             exerciseTextView = v;
         }
     }
 
-    public ExerciseAdapter(String[] eData){
+    public ExerciseAdapter(List<String> eData){
         exerciseDataset = eData;
     }
 
     @NonNull
     @Override
     public ExerciseAdapter.ExerciseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TextView exerciseTextView = (TextView)LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.exercise_text_view, viewGroup, false);
+        LinearLayout exerciseTextView = (LinearLayout)LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.exercise_text_view, viewGroup, false);
 
         ExerciseViewHolder exerViewHolder = new ExerciseViewHolder(exerciseTextView);
         return exerViewHolder;
@@ -37,11 +39,11 @@ class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewH
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseViewHolder exerciseViewHolder, int i) {
-        exerciseViewHolder.exerciseTextView.setText(exerciseDataset[i]);
+        ((TextView)exerciseViewHolder.exerciseTextView.findViewById(R.id.exercise_text_view)).setText(exerciseDataset.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return exerciseDataset.length;
+        return exerciseDataset.size();
     }
 }
